@@ -5,7 +5,7 @@ const Header = () => {
     return (
         <>
         <main className='fixed w-full  backdrop-blur-md  top-0' >
-            <section className='flex  justify-between px-4 py-4 bg1'>
+            <section className='flex  justify-between px-4 py-4 bg11'>
 
             <div>
             <h1 className='text-white'>coinVerse</h1>

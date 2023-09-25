@@ -9,16 +9,17 @@ const Coins = () => {
   const [searchTerm, setsearchTerm] = useState("")
   const [page, setPage] = useState(1);
   const coinsPerPage = 14;
-const handleSearch = (e) => {
-setsearchTerm(e.target.value)
-}
+
+
+
   useEffect(() => {
     const fetchCoins = async () => {
       setLoading(true);
 
       try {
         const response = await fetch(
-            `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${coinsPerPage}&page=${page}&sparkline=false${searchTerm ? `&ids=${searchTerm}` : ''}`,
+          `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${coinsPerPage}&page=${page}&sparkline=false`,
+          
           {
             method: "GET",
             headers: {
@@ -44,10 +45,20 @@ setsearchTerm(e.target.value)
     };
 
     fetchCoins();
-  }, [page,searchTerm]);
+  }, [page]);
+
+  const filterdCoins = coins.filter(coin =>
+    coin.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    coin.symbol.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  
+
+    
+
+
 
   return (
-    <div className="text-white  container ">
+    <div className="text-white  containe ">
      
 
       {loading ? (
@@ -56,23 +67,25 @@ setsearchTerm(e.target.value)
         <div>
           <section >
             
-          <section className="flex justify-between ">
+          <section className="flex justify-between  py-4 px-4">
 
          <h2 className="text-3xl font-bold mb-4 text-slate-200">Coins</h2>
          <div className='w-[2.8rem] h-[2.8rem] rounded-full bg-red-400'></div>
           </section>
-          <section className="input mb-[2rem] flex justify-center">
+          <section className="input mb-[2rem] flex justify-center px-4">
           <input class="placeholder:italic placeholder:text-slate-400 
           block bg-gray-800 w-full border border-slate-800 
-          py-4 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 rounded-[15px]
+          py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 rounded-[20px]
           focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Search for coins..."
-          type="search" name="search" value={searchTerm} onChange={handleSearch}/>
+          type="search" name="search" value={searchTerm} onChange={(e)=>setsearchTerm(e.target.value) } />
           
           </section>
           </section>
-          <ul className="flex flex-wrap justify-center gap-6 ">
-            {coins.map((coin) => (
-              <li key={coin.id} className="coin-card bg-gray-800 shadow-lg rounded-[18px] p-4 mb-[.4rem]">
+          <ul className="flex flex-wrap  gap-3 justify-center ">
+            {filterdCoins.map((coin) => (
+              <li key={coin.id} className="coin-card bg-gray-800 shadow-lg rounded-[18px] 
+              w-[165px]
+              p-4 mb-[.4rem]">
                 <figure>
                   <section>
                     <div className="coin-img-container w-[130px] xs:w-[110px]  ">
@@ -84,25 +97,33 @@ setsearchTerm(e.target.value)
                     </div>
                     <div className="flex space-x-2 pt-3 ">
 
-                    <h3 className="xs:text-[12px] font-medium ">{coin.name}</h3>
-                    {/* <h3 className="xs:text-[18px] ">({coin.symbol})</h3> */}
+                    <h3 className="xs:text-[15px] font-medium ">{coin.name}</h3>
+                    <h3 className="xs:text-[15px]  font-semibold capitalize ">({coin.symbol})</h3>
                     </div>
-                    <div></div>
+
+                    <div className="flex space-x-4">
+
+                
                     <p className="text-sm">${coin.current_price.toFixed(2)}</p>
                     <p className="text-sm">
                       {coin.price_change_24h < 0 ? (
-                        <div className="flex mb-2 space-x-2">
+                        <div className="flex mb-2 ">
 
-                        <p className="text-red-500">{coin.price_change_24h.toFixed(2)}% 
+                        <p className="text-red-500 text-[10px]">{coin.price_change_24h.toFixed(2)}% 
                         </p>
-                        <span className="text-red-500 text-[18px]"><BiSolidDownArrow /></span>
+                        <span className="text-red-500 text-[10px]"><BiSolidDownArrow /></span>
                         </div>
                          
                       ):(
-                        <p className="text-green-500">{coin.price_change_24h.toFixed(2)}% <BiSolidUpArrow /></p>
+                        <div className="flex mb-2  text-green-500">
+
+                        <p className="text-green-500 text-[10px]">{coin.price_change_24h.toFixed(2)}%</p>
+                        <p className="text-green-500 text-[10px]"><BiSolidUpArrow /></p> 
+                        </div>
                       )}
                       
                       </p>
+                      </div>
                       <div className="flex justify-center">
 
                      

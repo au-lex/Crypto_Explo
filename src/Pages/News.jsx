@@ -78,7 +78,7 @@ const News = () => {
         <button 
           onClick={() => {
             setCurrentPage((prev) => prev - 1);
-            window.scrollTo(0, 0); // Scroll to the top of the page
+            window.scrollTo(0, 0); 
           }} 
           disabled={currentPage === 1}
         >
@@ -87,7 +87,7 @@ const News = () => {
         <button 
           onClick={() => {
             setCurrentPage((prev) => prev + 1);
-            window.scrollTo(0, 0); // Scroll to the top of the page
+            window.scrollTo(0, 0); 
           }}
         >
           Next

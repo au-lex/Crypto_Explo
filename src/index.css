@@ -5,7 +5,8 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: rgb(12, 12, 10);
+  /* background-color: rgb(12, 12, 10); */
+  background-color: rgba(17, 24, 39, 1);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -26,6 +27,18 @@ h1, h2, h3, h4, h5, h6 {
   padding: 20px;
 }
 
+.coin-card:nth-child(even) .coin-img-container {
+
+ 
+}
+.coin-card:nth-child(even) {
+  /* margin-top: .4rem; */
+}
+.coin-card:nth-child(odd) {
+  /* margin-top: -.5rem; */
+}
+
+
 .newsItem {
   display: flex;
   flex-direction: column;
@@ -40,6 +53,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .image {
+  width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  border-radius: 10px;
+}
+.imageCoin {
   width: 100%;
   max-height: 400px;
   object-fit: contain;

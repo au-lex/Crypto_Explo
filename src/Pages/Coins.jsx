@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from "react";
 import HeaderFooter from "../Component/Header/HeaderFooter";
-
+import {GrFormNextLink} from "react-icons/gr"
+import {BiSolidUpArrow, BiSolidDownArrow} from "react-icons/bi"
+import {BsArrowRightCircle} from "react-icons/bs"
 const Coins = () => {
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [searchTerm, setsearchTerm] = useState("")
   const [page, setPage] = useState(1);
   const coinsPerPage = 14;
-
+const handleSearch = (e) => {
+setsearchTerm(e.target.value)
+}
   useEffect(() => {
     const fetchCoins = async () => {
       setLoading(true);
 
       try {
         const response = await fetch(
-          `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${coinsPerPage}&page=${page}&sparkline=false`,
+            `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${coinsPerPage}&page=${page}&sparkline=false${searchTerm ? `&ids=${searchTerm}` : ''}`,
           {
             method: "GET",
             headers: {
@@ -39,36 +44,76 @@ const Coins = () => {
     };
 
     fetchCoins();
-  }, [page]);
+  }, [page,searchTerm]);
 
   return (
-    <div className="text-white pb-[20rem] container mx-auto">
-      <h2 className="text-3xl font-bold mb-4">Coins</h2>
+    <div className="text-white  container ">
+     
 
       {loading ? (
         <p>Loading...</p>
       ) : (
         <div>
-          <ul className="flex flex-wrap justify-center gap-4">
+          <section >
+            
+          <section className="flex justify-between ">
+
+         <h2 className="text-3xl font-bold mb-4 text-slate-200">Coins</h2>
+         <div className='w-[2.8rem] h-[2.8rem] rounded-full bg-red-400'></div>
+          </section>
+          <section className="input mb-[2rem] flex justify-center">
+          <input class="placeholder:italic placeholder:text-slate-400 
+          block bg-gray-800 w-full border border-slate-800 
+          py-4 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 rounded-[15px]
+          focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Search for coins..."
+          type="search" name="search" value={searchTerm} onChange={handleSearch}/>
+          
+          </section>
+          </section>
+          <ul className="flex flex-wrap justify-center gap-6 ">
             {coins.map((coin) => (
-              <li key={coin.id} className="coin-card bg-gray-800 shadow-lg rounded p-4">
+              <li key={coin.id} className="coin-card bg-gray-800 shadow-lg rounded-[18px] p-4 mb-[.4rem]">
                 <figure>
                   <section>
-                    <div className="coin-img-container w-[130px] mb-2">
+                    <div className="coin-img-container w-[130px] xs:w-[110px]  ">
                       <img
                         src={coin.image}
                         alt={coin.name}
-                        className="w-full h-full rounded"
+                        className=" h-full rounded imageCoin"
                       />
                     </div>
-                    <h3 className="text-lg font-medium">{coin.name}</h3>
+                    <div className="flex space-x-2 pt-3 ">
+
+                    <h3 className="xs:text-[12px] font-medium ">{coin.name}</h3>
+                    {/* <h3 className="xs:text-[18px] ">({coin.symbol})</h3> */}
+                    </div>
+                    <div></div>
                     <p className="text-sm">${coin.current_price.toFixed(2)}</p>
+                    <p className="text-sm">
+                      {coin.price_change_24h < 0 ? (
+                        <div className="flex mb-2 space-x-2">
+
+                        <p className="text-red-500">{coin.price_change_24h.toFixed(2)}% 
+                        </p>
+                        <span className="text-red-500 text-[18px]"><BiSolidDownArrow /></span>
+                        </div>
+                         
+                      ):(
+                        <p className="text-green-500">{coin.price_change_24h.toFixed(2)}% <BiSolidUpArrow /></p>
+                      )}
+                      
+                      </p>
+                      <div className="flex justify-center">
+
+                     
+                      <span className="text-[1.2rem] text-slate-200"> <BsArrowRightCircle /></span>
+                      </div>
                   </section>
                 </figure>
               </li>
             ))}
           </ul>
-          <div className="mt-4 flex justify-center gap-4">
+          <div className="mt-4 flex justify-center gap-4 mb-[10rem]">
             <button
               onClick={() => setPage((prev) => prev - 1)}
               disabled={page === 1}
@@ -92,7 +137,6 @@ const Coins = () => {
 };
 
 export default Coins;
-
 
 
 

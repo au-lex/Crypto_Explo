@@ -13,9 +13,13 @@ const Hero = () => {
                 </figure>
 
                 <figcaption className='px-5'>
-                    <h1 className='text-white text-[1.4rem]'>Explore the Depths of
-                     YourCryptoCoin Blockchain with <span className='text-[2rem] text-yellow-300'>coinVerse</span> </h1>
-                     <p className='text-slate-300 mt-2'>Fast, reliable, and comprehensive insights into every transaction and block.</p>
+                    <h1 className='text-[2rem] text-yellow-300'>
+                      coinVerse </h1>
+                      
+                     <p className='text-slate-300 mt-2'>Get All The Info Regarding Your Favorite Crypto Currency
+                     Fast, reliable, and comprehensive insights into every transaction and block.
+                     </p>
+                     <p className='text-slate-300 mt-2'></p>
                    <div className='flex  my-4'>
                     <button className='bg-white block rounded-[25px] text-yellow-800 font-extrabold capitalize
                       w-[50%] h-[3rem]

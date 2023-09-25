@@ -59,7 +59,7 @@ const Test = () => {
   
             <figcaption>
               <h3 className="text-xl font-semibold text-yellow-500">{coin.name}</h3>
-              <p className='text-white'>Symbol: {coin.symbol}</p>
+              <p className='text-white'>{coin.symbol}</p>
               <p className='text-white'>Price in USD: ${coin.priceUSD}</p>
               <p className='text-white'>Price in BTC: {coin.priceBTC} BTC</p>
             </figcaption>

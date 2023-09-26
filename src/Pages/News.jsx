@@ -74,7 +74,7 @@ const News = () => {
         ))}
       </ul>
       
-      <div className="paginationControls mb-[10rem] space-x-10">
+      {/* <div className="paginationContro mb-[10rem] space-x-10">
         <button 
           onClick={() => {
             setCurrentPage((prev) => prev - 1);
@@ -92,7 +92,7 @@ const News = () => {
         >
           Next
         </button>
-      </div>
+      </div> */}
   
       <HeaderFooter />
     </div>

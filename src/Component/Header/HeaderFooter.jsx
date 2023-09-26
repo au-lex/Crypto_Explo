@@ -16,7 +16,7 @@ const HeaderFooter = () => {
         </Link>
     </div>
     <div className="">
-        <Link to={"/Coins"}>
+        <Link to={"/Coin"}>
        <span className="block pl-1 text-[1.8rem] text-yellow-400 cursor-pointer"> <GiTwoCoins /></span>
         <span className="block text-slate-50 capitalize text-[16px] font-light">coins</span>
         </Link>

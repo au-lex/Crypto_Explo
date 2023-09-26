@@ -47,10 +47,7 @@ const Coins = () => {
     fetchCoins();
   }, [page]);
 
-  const filterdCoins = coins.filter(coin =>
-    coin.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    coin.symbol.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+  
   
 
     
@@ -82,7 +79,7 @@ const Coins = () => {
           </section>
           </section>
           <ul className="flex flex-wrap  gap-3 justify-center ">
-            {filterdCoins.map((coin) => (
+            {coins.map((coin) => (
               <li key={coin.id} className="coin-card bg-gray-800 shadow-lg rounded-[18px] 
               w-[165px]
               p-4 mb-[.4rem]">

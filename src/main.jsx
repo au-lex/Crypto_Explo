@@ -8,7 +8,7 @@ import {
 import App from './App.jsx'
 import './index.css'
 import News from './Pages/News.jsx';
-import Coins from './Pages/Coins.jsx';
+import Coin from './Pages/Coin.jsx';
 
 
 
@@ -23,8 +23,8 @@ const router = createBrowserRouter([
     element:  <News />,
   },
   {
-    path: "/Coins",
-    element:  <Coins />,
+    path: "/Coin",
+    element:  <Coin />,
   },
 ]);
 

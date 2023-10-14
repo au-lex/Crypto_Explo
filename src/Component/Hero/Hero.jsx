@@ -6,9 +6,12 @@ const Hero = () => {
         <>
             <main>
                 <figure className='flex justify-center mt-20'>
-                    <div className='w-[280px] h-[280px]  '>
-                        <img src="https://res.cloudinary.com/durbee4ln/image/upload/v1694320906/fzi184at9pfqykos6cxn.svg"
-                         alt="" className='w-[100%]' />
+                    <div className='w-[480px] h-[380px]   '>
+                        {/* <img src="https://res.cloudinary.com/durbee4ln/image/upload/v1694320906/fzi184at9pfqykos6cxn.svg"
+                         alt="" className='w-[100%]' /> */}
+                         <img src="https://res.cloudinary.com/durbee4ln/image/upload/v1697133980/12_1_momkym.png"
+                         className='w-[100%] '
+                         alt="" />
                     </div>
                 </figure>
 

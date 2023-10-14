@@ -1,61 +1,3 @@
-// import React, { useState, useEffect } from 'react';
-
-// const API_URL = 'https://api.coinranking.com/v2/coins';
-
-// function Coin() {
-//   const [data, setData] = useState([]);
-//   const [loading, setLoading] = useState(true);
-
-//   useEffect(() => {
-//     async function fetchData() {
-//       try {
-//         const response = await fetch(`${API_URL}?limit=10`, {
-//           headers: {
-//             'Authorization': 'coinranking45c331d35181825e32190d00502e7098182b8ffe6540d93d',
-//           },
-//         });
-//         const result = await response.json();
-
-//         if (result && result.data && Array.isArray(result.data.coins)) {
-//           setData(result.data.coins);
-//           console.log(result.data);
-//         } else {
-//           console.warn('Unexpected API response structure:', result);
-//         }
-
-//         setLoading(false);
-//       } catch (error) {
-//         console.error("Error fetching the coins:", error);
-//         setLoading(false);
-//       }
-//     }
-
-//     fetchData();
-//   }, []);
-
-//   return (
-//     <div className="CoinContainer">
-//       <h1 className="CoinTitle">Coinranking Coins</h1>
-//       {loading ? (
-//         <p>Loading...</p>
-//       ) : (
-//         <div>
-//           {data.map(coin => (
-//             <div key={coin.uuid} className="CoinItem">
-//               <img src={coin.iconUrl} alt={coin.name} className="CoinImage"/>
-//               <p><strong>Name:</strong> {coin.name}</p>
-//               <p><strong>Symbol:</strong> {coin.symbol}</p>
-//               <p><strong>Price:</strong> ${coin.price}</p>
-          
-//             </div>
-//           ))}
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
-
-// export default Coin;
 
 
 
@@ -95,11 +37,31 @@ function Coin() {
   return (
     <>
     <div className="CoinContainer">
-      <h1 className="CoinTitle text-[1.4rem] text-slate-200 font-bold">Coins</h1>
+      
       {loading ? (
         <p>Loading...</p>
       ) : (
+
+        
         <div>
+
+<section className='flex justify-between py-4 '>
+
+      <h1 className="CoinTitle text-[1.4rem] text-slate-200 font-bold">Coins</h1>
+
+      <div class="input-wrapper">
+  <button class="icon"> 
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="25px" width="25px">
+      <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="#fff" d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z"></path>
+      <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="#fff" d="M22 22L20 20"></path>
+    </svg>
+  </button>
+  <input placeholder="search.." class="input" name="text" type="text" />
+</div>
+      </section>
+
+
+
           {data.map(coin => (
             <div key={coin.id} className="CoinItem">
               <img src={coin.image} alt={coin.name} className="CoinImage"/>
